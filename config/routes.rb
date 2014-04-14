@@ -1,4 +1,8 @@
 Baby::Application.routes.draw do
+  resources :votes, only: [:create, :new, :index]
+  
+  root 'votes#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

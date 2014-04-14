@@ -1,0 +1,10 @@
+.btn-group	
+	.span6
+		= form_for @vote do |f|
+			= f.hidden_field :girl, value: false
+			= f.submit 'Boy', :class => 'btn btn-primary btn-block'
+.btn-group	
+	.span6
+		= form_for @vote do |f|
+			= f.hidden_field :girl, value: true
+			= f.submit 'Girl', :class => 'btn btn-primary btn-block'
