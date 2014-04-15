@@ -22,7 +22,7 @@
     .navbar.navbar-static-top
       .navbar-inner
         .container
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+          -#%a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
@@ -34,9 +34,11 @@
               %li= link_to "Link 3", "/path3"
 
 
-    .row
-      -#.span3
-      .span12
-        = bootstrap_flash
-        = yield
-      -#.span3
+    .container
+      .row
+        -#.span3
+        .span6.offset3
+          = bootstrap_flash
+          %h1 foo
+          = yield
+        -#.span3

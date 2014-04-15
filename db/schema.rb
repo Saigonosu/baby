@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20140228231300) do
 
   create_table "votes", force: true do |t|
-    t.boolean  "girl"
+    t.boolean  "girl",       default: true, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

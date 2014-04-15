@@ -5,8 +5,8 @@ class VotesController < ApplicationController
   # GET /votes.json
   def index
     @votes = Vote.all
-    @boypercentage = Vote.boy_percentage.to_i
-    @girlpercentage = Vote.girl_percentage.to_i
+    @boypercentage = Vote.boy_percentage.round
+    @girlpercentage = Vote.girl_percentage.round
   end
 
   # GET /votes/1
