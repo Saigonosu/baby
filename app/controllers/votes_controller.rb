@@ -1,12 +1,11 @@
 class VotesController < ApplicationController
+  before_action :set_percentages, only: [:index]
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
   # GET /votes
   # GET /votes.json
   def index
     @votes = Vote.all
-    @boypercentage = Vote.boy_percentage.round
-    @girlpercentage = Vote.girl_percentage.round
   end
 
   # GET /votes/1
@@ -30,8 +29,10 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.save
+        set_percentages
         format.html { redirect_to votes_path, notice: 'Vote was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @vote }
+        format.json { 
+          render action: 'percentages', status: :created}
       else
         format.html { render action: 'new' }
         format.json { render json: @vote.errors, status: :unprocessable_entity }
@@ -73,4 +74,10 @@ class VotesController < ApplicationController
     def vote_params
       params.require(:vote).permit(:girl)
     end
+    
+    def set_percentages
+      @boypercentage = Vote.boy_percentage.round
+      @girlpercentage = Vote.girl_percentage.round
+    end
 end
+

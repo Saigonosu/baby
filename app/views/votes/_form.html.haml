@@ -1,9 +1,19 @@
 .span6
-  = form_for @vote do |f|
+  = form_for @vote, url: votes_path(@vote, format: :json), remote: true do |f|
     = f.hidden_field :girl, value: false
-    = f.submit 'Boy?', :class => 'btn btn-primary btn-block btn-jumbo'
+    = f.submit 'Boy?', :class => 'btn btn-primary btn-block btn-jumbo', id: 'boy-btn'
 .span6
-  = form_for @vote do |f|
+  = form_for @vote, url: votes_path(@vote, format: :json), remote: true do |f|
     = f.hidden_field :girl, value: true
-    = f.submit 'Girl?', :class => 'btn btn-danger btn-block btn-jumbo'
+    = f.submit 'Girl?', :class => 'btn btn-danger btn-block btn-jumbo', id: 'girl-btn'
+:coffeescript
+  window.onload = ->
+    $('form').on 'ajax:success', (evt, data, status, xhr) ->
+       console.log(status, xhr.status, data)
+
+       $('input.btn').prop('disabled', 'disabled')
+       $('#girl-btn').prop value: data.girlpercentage + '%'
+       $('#boy-btn').prop value: data.boypercentage + '%'
+
+
 
