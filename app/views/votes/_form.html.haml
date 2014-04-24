@@ -8,7 +8,7 @@
     = f.submit 'Girl?', :class => 'btn btn-danger btn-block btn-jumbo', id: 'girl-btn'
 :coffeescript
   window.onload = ->
-    $('form').on 'ajax:success', (evt, data, status, xhr) ->
+    $(document).on 'ajax:success', 'form', (evt, data, status, xhr) ->
        console.log(status, xhr.status, data)
 
        $('input.btn').prop('disabled', 'disabled')
